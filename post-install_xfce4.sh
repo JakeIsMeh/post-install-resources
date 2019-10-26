@@ -22,6 +22,7 @@ function menu_text
 }
 
 function menu_select {
+  echo "Choose an option: "
   read selection
   case $selection in
     1)
@@ -64,6 +65,19 @@ function install_theme {
   echo "Configuring theme..."
   echo ""
   echo "Config XFCE4"
+  # Create vars
+  xfconf-query -c xsettings -p /Net/ThemeName --create
+  xfconf-query -c xsettings -p /Net/IconThemeName --create
+  xfconf-query -c xsettings -p /Gtk/FontName --create
+  xfconf-query -c xfwm4 -p /general/theme --create
+  xfconf-query -c xfwm4 -p /general/title_font --create
+  xfconf-query -c xfce4-notifyd -p /do-fadeout --create
+  xfconf-query -c xfce4-notifyd -p /do-slideout --create
+  xfconf-query -c xfce4-notifyd -p /initial-opacity --create
+  xfconf-query -c xfce4-notifyd -p /expire-timeout --create
+  xfconf-query -c xfce4-notifyd -p /theme --create
+  xfconf-query -c xfce4-notifyd -p /notify-location --create
+  # Set vars
   xfconf-query -c xsettings -p /Net/ThemeName -s "Materia-dark"
   xfconf-query -c xsettings -p /Net/IconThemeName -s "Numix-Circle"
   xfconf-query -c xsettings -p /Gtk/FontName -s "Roboto 10"
@@ -71,10 +85,10 @@ function install_theme {
   xfconf-query -c xfwm4 -p /general/title_font -s "Roboto Medium 11"
   xfconf-query -c xfce4-notifyd -p /do-fadeout -s "true"
   xfconf-query -c xfce4-notifyd -p /do-slideout -s "true"
-  xfconf-query -c xfce4-notifyd -p /initial-opacity "1.0"
-  xfconf-query -c xfce4-notifyd -p /expire-timeout "5"
-  xfconf-query -c xfce4-notifyd -p /theme "Greybird"
-  xfconf-query -c xfce4-notifyd -p /notify-location "2"
+  xfconf-query -c xfce4-notifyd -p /initial-opacity -s "1.0"
+  xfconf-query -c xfce4-notifyd -p /expire-timeout -s "5"
+  xfconf-query -c xfce4-notifyd -p /theme -s "Greybird"
+  xfconf-query -c xfce4-notifyd -p /notify-location -s "2"
   echo ""
   echo "Config LightDM GTK Greeter..."
   echo ""
@@ -102,20 +116,22 @@ function debloat_xfce {
 
 function no_gnu_name {
   sed -i -e 's.      OS="${GRUB_DISTRIBUTOR} GNU/Linux".      OS="${GRUB_DISTRIBUTOR}".g' /etc/grub.d/10_linux
+  grub-update
 }
 
+
 function thunar_as_root {
-  sed -i -e 's.</actions>..g' /home/$USER/.config/Thunar/uca.xml
-  echo "<action>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "	<icon>terminal</icon>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "	<name>Open as root</name>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "	<command>pkexec thunar %f<command/>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "	<patterns>*</patterns>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "	</directories>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "</action>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "</actions>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "" >> /home/$USER/.config/Thunar/uca.xml
-  echo "" >> /home/$USER/.config/Thunar/uca.xml
+  sed -i -e 's.</actions>..g' /home/$(logname)/.config/Thunar/uca.xml
+  echo "<action>" >> /home/$(logname)/.config/Thunar/uca.xml
+  echo "	<icon>terminal</icon>" >> /home/$(logname)/.config/Thunar/uca.xml
+  echo "	<name>Open as root</name>" >> /home/$(logname)/.config/Thunar/uca.xml
+  echo "	<command>pkexec thunar %f<command/>" >> /home/$(logname)/.config/Thunar/uca.xml
+  echo "	<patterns>*</patterns>" >> /home/$(logname)/.config/Thunar/uca.xml
+  echo "	</directories>" >> /home/$(logname)/.config/Thunar/uca.xml
+  echo "</action>" >> /home/$(logname)/.config/Thunar/uca.xml
+  echo "</actions>" >> /home/$(logname)/.config/Thunar/uca.xml
+  echo "" >> /home/$(logname)/.config/Thunar/uca.xml
+  echo "" >> /home/$(logname)/.config/Thunar/uca.xml
 }
 
 function finish {
