@@ -60,7 +60,7 @@ function install_theme {
   echo ""
   echo "Installing theme..."
   echo ""
-  apt -y install materia-gtk-theme numix-icon-theme-circle fonts-roboto
+  sudo apt -y install materia-gtk-theme numix-icon-theme-circle fonts-roboto
   echo ""
   echo "Configuring theme..."
   echo ""
@@ -92,14 +92,14 @@ function install_theme {
   echo ""
   echo "Config LightDM GTK Greeter..."
   echo ""
-  rm -f /etc/lightdm/lightdm-gtk-greeter.conf
-  echo "[greeter]" >> /etc/lightdm/lightdm-gtk-greeter.conf
-  echo "background = /usr/share/backgrounds/background.png" >> /etc/lightdm/lightdm-gtk-greeter.conf
-  echo "theme-name = Materia-dark" >> /etc/lightdm/lightdm-gtk-greeter.conf
-  echo "font-name = Roboto 10" >> /etc/lightdm/lightdm-gtk-greeter.conf
-  echo "icon-theme-name = Numix-Circle" >> /etc/lightdm/lightdm-gtk-greeter.conf
-  echo "hide-user-image = true" >> /etc/lightdm/lightdm-gtk-greeter.conf
-  echo "indicators = ~host;~clock;~spacer;~language;~session;~ally;~power" >> /etc/lightdm/lightdm-gtk-greeter.conf
+  sudo rm -f /etc/lightdm/lightdm-gtk-greeter.conf
+  sudo echo "[greeter]" >> /etc/lightdm/lightdm-gtk-greeter.conf
+  sudo echo "background = /usr/share/backgrounds/background.png" >> /etc/lightdm/lightdm-gtk-greeter.conf
+  sudo echo "theme-name = Materia-dark" >> /etc/lightdm/lightdm-gtk-greeter.conf
+  sudo echo "font-name = Roboto 10" >> /etc/lightdm/lightdm-gtk-greeter.conf
+  sudo echo "icon-theme-name = Numix-Circle" >> /etc/lightdm/lightdm-gtk-greeter.conf
+  sudo echo "hide-user-image = true" >> /etc/lightdm/lightdm-gtk-greeter.conf
+  sudo echo "indicators = ~host;~clock;~spacer;~language;~session;~ally;~power" >> /etc/lightdm/lightdm-gtk-greeter.conf
 #  sed -i -e 's/#theme-name=/theme-name = Materia-dark/g' /etc/lightdm/lightdm-gtk-greeter.conf
 #  sed -i -e 's/#icon-theme-name=/icon-theme-name = Numix-Circle/g' /etc/lightdm/lightdm-gtk-greeter.conf
 #  sed -i -e 's/#font-name=/font-name = Roboto 10/g' /etc/lightdm/lightdm-gtk-greeter.conf
@@ -107,40 +107,45 @@ function install_theme {
 }
 
 function reinstall_fonts {
-  apt -y install fonts-roboto fonts-roboto-slab fonts-noto
+  sudo apt -y install fonts-roboto fonts-roboto-slab fonts-noto
 }
 
 function debloat_xfce {
-  apt -y purge xterm atril exfalso hv3 parole quodlibet synaptic xsane libreoffice-common
+  sudo apt -y purge xterm atril exfalso hv3 parole quodlibet synaptic xsane libreoffice-common
 }
 
 function no_gnu_name {
-  sed -i -e 's.      OS="${GRUB_DISTRIBUTOR} GNU/Linux".      OS="${GRUB_DISTRIBUTOR}".g' /etc/grub.d/10_linux
-  grub-update
+  sudo sed -i -e 's.      OS="${GRUB_DISTRIBUTOR} GNU/Linux".      OS="${GRUB_DISTRIBUTOR}".g' /etc/grub.d/10_linux
+  sudo grub-update
 }
 
 
 function thunar_as_root {
-  sed -i -e 's.</actions>..g' /home/$(logname)/.config/Thunar/uca.xml
-  echo "<action>" >> /home/$(logname)/.config/Thunar/uca.xml
-  echo "	<icon>terminal</icon>" >> /home/$(logname)/.config/Thunar/uca.xml
-  echo "	<name>Open as root</name>" >> /home/$(logname)/.config/Thunar/uca.xml
-  echo "	<command>pkexec thunar %f<command/>" >> /home/$(logname)/.config/Thunar/uca.xml
-  echo "	<patterns>*</patterns>" >> /home/$(logname)/.config/Thunar/uca.xml
-  echo "	</directories>" >> /home/$(logname)/.config/Thunar/uca.xml
-  echo "</action>" >> /home/$(logname)/.config/Thunar/uca.xml
-  echo "</actions>" >> /home/$(logname)/.config/Thunar/uca.xml
-  echo "" >> /home/$(logname)/.config/Thunar/uca.xml
-  echo "" >> /home/$(logname)/.config/Thunar/uca.xml
+  sed -i -e 's.</actions>..g' /home/$USER/.config/Thunar/uca.xml
+  echo "<action>" >> /home/$USER/.config/Thunar/uca.xml
+  echo "	<icon>terminal</icon>" >> /home/$USER/.config/Thunar/uca.xml
+  echo "	<name>Open as root</name>" >> /home/$USER/.config/Thunar/uca.xml
+  echo "	<command>pkexec thunar %f<command/>" >> /home/$USER/.config/Thunar/uca.xml
+  echo "	<patterns>*</patterns>" >> /home/$USER/.config/Thunar/uca.xml
+  echo "	</directories>" >> /home/$USER/.config/Thunar/uca.xml
+  echo "</action>" >> /home/$USER/.config/Thunar/uca.xml
+  echo "</actions>" >> /home/$USER/.config/Thunar/uca.xml
+  echo "" >> /home/$USER/.config/Thunar/uca.xml
+  echo "" >> /home/$USER/.config/Thunar/uca.xml
 }
 
 function finish {
-  apt autoremove
+  # Install java runtime to prevent disabling of CACert Keystores
+  sudo apt install openjdk-11-jre
+  sudo apt -y autoremove
   exit
 }
 
+# Ask for password at start so sudo wont need to during a function
+sudo echo ""
+
 echo Updating sources...
-apt update
+sudo apt update
 
 while true; do
   clear
