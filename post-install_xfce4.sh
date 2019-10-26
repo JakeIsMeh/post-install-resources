@@ -16,8 +16,8 @@ function menu_text
   echo "2) Debloat (XFCE4)"
   echo "3) Install, Configure & Apply Material Theme (Materia-gtk-dark + Numix-Circle) (XFCE4)"
   echo "4) Install Additional Fonts"
-  echo "5) Add 'Thunar As Root' Action"
-  echo "6) Remove 'GNU/Linux' from Grub2"
+  echo "5) Remove 'GNU/Linux' from Grub2"
+#  echo "6) Add 'Thunar As Root' Action"
   echo "0) Finish & Exit"
 }
 
@@ -38,11 +38,11 @@ function menu_select {
       reinstall_fonts
       ;;
     5)
-      thunar_as_root
-	  ;;
-    6)
       no_gnu_name
 	  ;;
+#    6)
+#      thunar_as_root
+#	  ;;
     0)
       finish
 	  ;;
@@ -93,13 +93,13 @@ function install_theme {
   echo "Config LightDM GTK Greeter..."
   echo ""
   sudo rm -f /etc/lightdm/lightdm-gtk-greeter.conf
-  sudo echo "[greeter]" >> /etc/lightdm/lightdm-gtk-greeter.conf
-  sudo echo "background = /usr/share/backgrounds/background.png" >> /etc/lightdm/lightdm-gtk-greeter.conf
-  sudo echo "theme-name = Materia-dark" >> /etc/lightdm/lightdm-gtk-greeter.conf
-  sudo echo "font-name = Roboto 10" >> /etc/lightdm/lightdm-gtk-greeter.conf
-  sudo echo "icon-theme-name = Numix-Circle" >> /etc/lightdm/lightdm-gtk-greeter.conf
-  sudo echo "hide-user-image = true" >> /etc/lightdm/lightdm-gtk-greeter.conf
-  sudo echo "indicators = ~host;~clock;~spacer;~language;~session;~ally;~power" >> /etc/lightdm/lightdm-gtk-greeter.conf
+  echo "[greeter]" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
+  echo "background = /usr/share/backgrounds/background.png" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
+  echo "theme-name = Materia-dark" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
+  echo "font-name = Roboto 10" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
+  echo "icon-theme-name = Numix-Circle" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
+  echo "hide-user-image = true" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
+  echo "indicators = ~host;~clock;~spacer;~language;~session;~ally;~power" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
 #  sed -i -e 's/#theme-name=/theme-name = Materia-dark/g' /etc/lightdm/lightdm-gtk-greeter.conf
 #  sed -i -e 's/#icon-theme-name=/icon-theme-name = Numix-Circle/g' /etc/lightdm/lightdm-gtk-greeter.conf
 #  sed -i -e 's/#font-name=/font-name = Roboto 10/g' /etc/lightdm/lightdm-gtk-greeter.conf
@@ -116,23 +116,23 @@ function debloat_xfce {
 
 function no_gnu_name {
   sudo sed -i -e 's.      OS="${GRUB_DISTRIBUTOR} GNU/Linux".      OS="${GRUB_DISTRIBUTOR}".g' /etc/grub.d/10_linux
-  sudo grub-update
+  sudo update-grub
 }
 
 
-function thunar_as_root {
-  sed -i -e 's.</actions>..g' /home/$USER/.config/Thunar/uca.xml
-  echo "<action>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "	<icon>terminal</icon>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "	<name>Open as root</name>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "	<command>pkexec thunar %f<command/>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "	<patterns>*</patterns>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "	</directories>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "</action>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "</actions>" >> /home/$USER/.config/Thunar/uca.xml
-  echo "" >> /home/$USER/.config/Thunar/uca.xml
-  echo "" >> /home/$USER/.config/Thunar/uca.xml
-}
+#function thunar_as_root {
+#  sed -i -e 's.</actions>..g' /home/$USER/.config/Thunar/uca.xml
+#  echo "<action>" >> /home/$USER/.config/Thunar/uca.xml
+#  echo "	<icon>terminal</icon>" >> /home/$USER/.config/Thunar/uca.xml
+#  echo "	<name>Open as root</name>" >> /home/$USER/.config/Thunar/uca.xml
+#  echo "	<command>pkexec thunar %f<command/>" >> /home/$USER/.config/Thunar/uca.xml
+#  echo "	<patterns>*</patterns>" >> /home/$USER/.config/Thunar/uca.xml
+#  echo "	</directories>" >> /home/$USER/.config/Thunar/uca.xml
+#  echo "</action>" >> /home/$USER/.config/Thunar/uca.xml
+#  echo "</actions>" >> /home/$USER/.config/Thunar/uca.xml
+#  echo "" >> /home/$USER/.config/Thunar/uca.xml
+#  echo "" >> /home/$USER/.config/Thunar/uca.xml
+#}
 
 function finish {
   # Install java runtime to prevent disabling of CACert Keystores
