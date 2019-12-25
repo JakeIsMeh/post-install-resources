@@ -79,7 +79,7 @@ function install_theme {
   xfconf-query -c xfce4-notifyd -p /notify-location --create
   # Set vars
   xfconf-query -c xsettings -p /Net/ThemeName -s "Materia"
-  xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus"
+  xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Light"
   xfconf-query -c xsettings -p /Gtk/FontName -s "Roboto 10"
   xfconf-query -c xfwm4 -p /general/theme -s "Materia"
   xfconf-query -c xfwm4 -p /general/title_font -s "Roboto Bold 10"
