@@ -14,7 +14,7 @@ function menu_text
   echo ""
   echo "1) Get Packages"
   echo "2) Debloat (XFCE4)"
-  echo "3) Install, Configure & Apply Material Theme (Materia-gtk-dark + Numix-Circle) (XFCE4)"
+  echo "3) Install, Configure & Apply Material Theme (Materia + Papirus) (XFCE4)"
   echo "4) Install Additional Fonts"
   echo "5) Remove 'GNU/Linux' from Grub2"
 #  echo "6) Add 'Thunar As Root' Action"
@@ -60,7 +60,7 @@ function install_theme {
   echo ""
   echo "Installing theme..."
   echo ""
-  sudo apt -y install materia-gtk-theme numix-icon-theme-circle fonts-roboto
+  sudo apt -y install materia-gtk-theme papirus-icon-theme fonts-roboto
   echo ""
   echo "Configuring theme..."
   echo ""
@@ -78,11 +78,11 @@ function install_theme {
   xfconf-query -c xfce4-notifyd -p /theme --create
   xfconf-query -c xfce4-notifyd -p /notify-location --create
   # Set vars
-  xfconf-query -c xsettings -p /Net/ThemeName -s "Materia-dark"
-  xfconf-query -c xsettings -p /Net/IconThemeName -s "Numix-Circle"
+  xfconf-query -c xsettings -p /Net/ThemeName -s "Materia"
+  xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus"
   xfconf-query -c xsettings -p /Gtk/FontName -s "Roboto 10"
-  xfconf-query -c xfwm4 -p /general/theme -s "Materia-dark"
-  xfconf-query -c xfwm4 -p /general/title_font -s "Roboto Medium 11"
+  xfconf-query -c xfwm4 -p /general/theme -s "Materia"
+  xfconf-query -c xfwm4 -p /general/title_font -s "Roboto Bold 10"
   xfconf-query -c xfce4-notifyd -p /do-fadeout -s "true"
   xfconf-query -c xfce4-notifyd -p /do-slideout -s "true"
   xfconf-query -c xfce4-notifyd -p /initial-opacity -s "1.0"
@@ -97,7 +97,7 @@ function install_theme {
   echo "background = /usr/share/backgrounds/background.png" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
   echo "theme-name = Materia-dark" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
   echo "font-name = Roboto 10" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
-  echo "icon-theme-name = Numix-Circle" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
+  echo "icon-theme-name = Papirus" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
   echo "hide-user-image = true" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
   echo "indicators = ~host;~clock;~spacer;~language;~session;~ally;~power" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
 #  sed -i -e 's/#theme-name=/theme-name = Materia-dark/g' /etc/lightdm/lightdm-gtk-greeter.conf
