@@ -95,7 +95,7 @@ function install_theme {
   sudo rm -f /etc/lightdm/lightdm-gtk-greeter.conf
   echo "[greeter]" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
   echo "background = /usr/share/backgrounds/background.png" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
-  echo "theme-name = Materia-dark" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
+  echo "theme-name = Materia" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
   echo "font-name = Roboto 10" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
   echo "icon-theme-name = Papirus" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
   echo "hide-user-image = true" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
