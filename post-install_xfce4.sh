@@ -136,7 +136,7 @@ function no_gnu_name {
 
 function finish {
   # Install java runtime to prevent disabling of CACert Keystores
-  sudo apt install openjdk-11-jre
+  sudo apt -y install openjdk-11-jre
   sudo apt -y autoremove
   exit
 }
