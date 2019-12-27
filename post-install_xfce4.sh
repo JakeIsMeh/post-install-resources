@@ -92,6 +92,7 @@ function install_theme {
   echo ""
   echo "Config LightDM GTK Greeter..."
   echo ""
+  sudo cp /etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf.bak
   sudo rm -f /etc/lightdm/lightdm-gtk-greeter.conf
   echo "[greeter]" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
   echo "background = /usr/share/backgrounds/background.png" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
