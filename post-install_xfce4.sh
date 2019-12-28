@@ -2,6 +2,7 @@
 # debian post install
 #
 # Written by JakeIsMeh - 25/10/2019
+# Last updated - 28/12/2019
 # 
 # github.com/jakeismeh
 # gitlab.com/jakeismeh
