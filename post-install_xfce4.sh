@@ -113,8 +113,9 @@ function reinstall_fonts {
 }
 
 function debloat_xfce {
-  sudo apt -y purge xterm atril exfalso hv3 parole quodlibet synaptic xsane libreoffice-common pidgin gnome-software thunderbird transmission-gtk devhelp gnome-mines sgt-launcher gnome-sudoku
-  # Install java runtime to prevent disabling of CACert Keystores upon auto remove
+  sudo apt -y purge xterm atril exfalso hv3 parole quodlibet synaptic xsane libreoffice-common pidgin gnome-software thunderbird transmission-gtk devhelp gnome-mines gnome-sudoku
+  sudo apt -y purge sgt-launcher
+# Install java runtime to prevent disabling of CACert Keystores upon auto remove
   sudo apt -y install openjdk-11-jre
 }
 
