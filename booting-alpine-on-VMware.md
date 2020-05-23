@@ -1,3 +1,5 @@
+### Edit: Now an intervention-less boot works and this doesn't and I don't know what to believe in this world anymore
+---
 # Booting Alpine Linux on VMware
 
 1. Use `alpine-virt` iso
