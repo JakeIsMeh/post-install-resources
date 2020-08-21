@@ -6,6 +6,7 @@
   - [Refresh user groups without relogging-in](#refresh-user-groups-without-relogging-in)
 
 - [Scripts](#scripts)
+  - [Alpine Linux Post-Install Script](#alpine-linux-post-install-script)
   - [Post-install script for Debian-based systems running XFCE4.12+](#post-install-script-for-debian-based-systems-running-xfce412)
 
 - [Miscellaneous Tips](#miscellaneous-tips)
@@ -31,16 +32,30 @@ Sidenote: Disable your adblocker if archive.org isnt working.
 ---
 # Scripts
 
-## Post-install script for Debian-based systems running XFCE4.12+
+## Alpine Linux Post-Install Script
 
 GitHub:
 ```sh
-$ wget -O post_install_xfce4.sh https://raw.githubusercontent.com/JakeIsMeh/wiki-and-misc-resources/master/res/post_install_xfce4.sh && chmod +x post_install_xfce4.sh && ./post_install_xfce4.sh 
+wget -O post_inst_alpine.sh https://raw.githubusercontent.com/JakeIsMeh/wiki-and-misc-resources/master/res/post_inst_alpine.sh && chmod +x post_inst_alpine.sh && ./post_inst_alpine.sh
+# Run this as root
 ```
 
 GitLab:
 ```sh
-$ wget -O post_install_xfce4.sh https://gitlab.com/JakeIsMeh/wiki-and-misc-resources/raw/master/res/post_install_xfce4.sh && chmod +x post_install_xfce4.sh && ./post_install_xfce4.sh
+wget -O post_inst_alpine.sh https://gitlab.com/JakeIsMeh/wiki-and-misc-resources/raw/master/res/post_inst_alpine.sh && chmod +x post_inst_alpine.sh && ./post_inst_alpine.sh
+# Run this as root
+```
+
+## Post-install script for Debian-based systems running XFCE4.12+
+
+GitHub:
+```sh
+$ wget -O post_inst_deb_xfce4.sh https://raw.githubusercontent.com/JakeIsMeh/wiki-and-misc-resources/master/res/post_inst_deb_xfce4.sh && chmod +x post_inst_deb_xfce4.sh && ./post_inst_deb_xfce4.sh 
+```
+
+GitLab:
+```sh
+$ wget -O post_inst_deb_xfce4.sh https://gitlab.com/JakeIsMeh/wiki-and-misc-resources/raw/master/res/post_inst_deb_xfce4.sh && chmod +x post_inst_deb_xfce4.sh && ./post_inst_deb_xfce4.sh
 ```
 
 Put background in /usr/share/backgrounds as background.png
