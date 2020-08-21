@@ -3,6 +3,7 @@
 ## Table of contents
 - [Handy Commands List](#handy-commands-list)
   - [Add user to sudo on Debian-based systems](#add-user-to-sudo-on-debian-based-systems)
+  - [Add user to sudo on Alpine-based systems](#add-user-to-sudo-on-alpine-based-systems)
   - [Refresh user groups without relogging-in](#refresh-user-groups-without-relogging-in)
 
 - [Scripts](#scripts)
@@ -18,6 +19,15 @@
 ```sh
 usermod -aG sudo [username]
 reboot
+# Run these as root
+```
+
+## Add user to sudo on Alpine-based systems
+```sh 
+addgroup sudo
+addgroup [username] sudo
+sed -i -r 's/\# \%sudo/\%sudo/' /etc/sudoers
+# Allows users in the sudo group to use sudo
 # Run these as root
 ```
 
