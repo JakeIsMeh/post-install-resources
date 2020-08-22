@@ -1,4 +1,4 @@
-#/bin/ash
+#!/bin/ash
 #
 # Alpine post-install script
 # Written by JakeIsMeh
