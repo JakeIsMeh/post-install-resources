@@ -82,3 +82,5 @@ Put background in /usr/share/backgrounds as background.png
 + mem.hotadd = "FALSE"
 ```
 4. Profit, voila, presto, etc.
+
+Bug tracker on GitLab: [alpine/aports #8476](https://gitlab.alpinelinux.org/alpine/aports/-/issues/8476)
