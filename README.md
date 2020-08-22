@@ -17,18 +17,19 @@
 
 ## Add user to sudo on Debian-based systems
 ```sh
+# Run these as root
 usermod -aG sudo [username]
 reboot
-# Run these as root
 ```
 
 ## Add user to sudo on Alpine-based systems
-```sh 
+```sh
+# Run these as root
 addgroup sudo
 addgroup [username] sudo
 sed -i -r 's/\# \%sudo/\%sudo/' /etc/sudoers
-# Allows users in the sudo group to use sudo
-# Run these as root
+# ^ Allows users in the sudo group to use sudo
+reboot
 ```
 
 ## Refresh user groups without relogging-in
@@ -46,14 +47,14 @@ Sidenote: Disable your adblocker if archive.org isnt working.
 
 GitHub:
 ```sh
-wget -O post_inst_alpine.sh https://raw.githubusercontent.com/JakeIsMeh/wiki-and-misc-resources/master/res/post_inst_alpine.sh && chmod +x post_inst_alpine.sh && ./post_inst_alpine.sh
 # Run this as root
+wget -O post_inst_alpine.sh https://raw.githubusercontent.com/JakeIsMeh/wiki-and-misc-resources/master/res/post_inst_alpine.sh && chmod +x post_inst_alpine.sh && ./post_inst_alpine.sh
 ```
 
 GitLab:
 ```sh
-wget -O post_inst_alpine.sh https://gitlab.com/JakeIsMeh/wiki-and-misc-resources/raw/master/res/post_inst_alpine.sh && chmod +x post_inst_alpine.sh && ./post_inst_alpine.sh
 # Run this as root
+wget -O post_inst_alpine.sh https://gitlab.com/JakeIsMeh/wiki-and-misc-resources/raw/master/res/post_inst_alpine.sh && chmod +x post_inst_alpine.sh && ./post_inst_alpine.sh
 ```
 
 ## Post-install script for Debian-based systems running XFCE4.12+
@@ -74,7 +75,7 @@ Put background in /usr/share/backgrounds as background.png
 # Miscellaneous Tips
 
 ## Booting Alpine Linux on VMware Workstation
-1. Against the developers' advice, use the alpine-standard image.
+1. Against the developers' advice, use the `alpine-standard` image.
 2. When setting up storage, either **don't** use `SCSI` at all, or use `Paravirtualized SCSI`.
 3. After creating the VM, close VMware and edit the `.vmx` file for the VM as follows:
 ```diff
