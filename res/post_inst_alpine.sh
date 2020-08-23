@@ -47,4 +47,4 @@ setup_user() {
 menu_text
 echo "Starting 1..." && install_pkgs
 echo "Starting 2..." && yeet_motd
-echo "Starting 3..." && install_pkgs
+echo "Starting 3..." && setup_user
