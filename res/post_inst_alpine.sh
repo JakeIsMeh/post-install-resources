@@ -4,7 +4,7 @@
 # Written by JakeIsMeh
 # 
 # Created 2020-08-22
-# Last Updated 2020-08-22
+# Last Updated 2020-08-23
 #
 # github.com/jakeismeh
 # gitlab.com/jakeismeh
@@ -14,14 +14,14 @@ menu_text() {
     echo "By JakeIsMeh"
     echo "gitlab.com/jakeismeh || github.com/jakeismeh"
     echo ""
-    echo "1) Get sudo, nano, openssh-server"
+    echo "1) Get sudo, nano"
     echo "2) Yeet the MOTD"
     echo "3) Setup user account"
     echo "4) Add user to sudo"
 }
 
 install_pkgs() {
-    apk add sudo nano openssh-server
+    apk add sudo nano
 }
 
 yeet_motd() {
