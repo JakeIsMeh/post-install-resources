@@ -8,6 +8,7 @@
 
 - [Scripts](#scripts)
   - [Alpine Linux Post-Install Script](#alpine-linux-post-install-script)
+  - [Ubuntu Server 20.04 Debloat Script](#ubuntu-server-2004-debloat-script)
   - [Post-install script for Debian-based systems running XFCE4.12+](#post-install-script-for-debian-based-systems-running-xfce412)
 
 - [Miscellaneous Tips](#miscellaneous-tips)
@@ -55,6 +56,20 @@ GitLab:
 ```sh
 # Run this as root
 wget -O post_inst_alpine.sh https://gitlab.com/JakeIsMeh/wiki-and-misc-resources/raw/master/res/post_inst_alpine.sh && chmod +x post_inst_alpine.sh && ./post_inst_alpine.sh
+```
+
+## Ubuntu Server 20.04 Debloat Script
+
+GitHub:
+```bash
+# Make sure you are/can be a privileged user
+curl https://raw.githubusercontent.com/JakeIsMeh/wiki-and-misc-resources/master/res/ubnt-srv-20-04-debloat.bash | sudo bash
+```
+
+GitHub:
+```bash
+# Make sure you are/can be a privileged user
+curl https://gitlab.com/JakeIsMeh/wiki-and-misc-resources/raw/master/res/ubnt-srv-20-04-debloat.bash | sudo bash
 ```
 
 ## Post-install script for Debian-based systems running XFCE4.12+
