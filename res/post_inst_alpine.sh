@@ -41,10 +41,10 @@ setup_user() {
     echo "Enter desired username, followed by [ENTER]:"
     read usrname
     adduser $usrname
-    echo "Starting 4..." && sudo_user
+    echo "Adding 'sudo' group & user to said group..." && sudo_user
 }
 
 menu_text
-echo "Starting 1..." && install_pkgs
-echo "Starting 2..." && yeet_motd
-echo "Starting 3..." && setup_user
+echo "Installing packages..." && install_pkgs
+echo "Removing MOTD..." && yeet_motd
+echo "Adding a User..." && setup_user
