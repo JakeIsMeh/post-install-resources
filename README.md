@@ -63,13 +63,13 @@ wget -O post_inst_alpine.sh https://gitlab.com/JakeIsMeh/wiki-and-misc-resources
 GitHub:
 ```bash
 # Make sure you are/can be a privileged user
-curl https://raw.githubusercontent.com/JakeIsMeh/wiki-and-misc-resources/master/res/ubnt-srv-20-04-debloat.bash | sudo bash
+curl https://raw.githubusercontent.com/JakeIsMeh/wiki-and-misc-resources/master/res/ubnt_srv_20_04_debloat.bash | sudo bash
 ```
 
 GitHub:
 ```bash
 # Make sure you are/can be a privileged user
-curl https://gitlab.com/JakeIsMeh/wiki-and-misc-resources/raw/master/res/ubnt-srv-20-04-debloat.bash | sudo bash
+curl https://gitlab.com/JakeIsMeh/wiki-and-misc-resources/raw/master/res/ubnt_srv_20_04_debloat.bash | sudo bash
 ```
 
 ## Post-install script for Debian-based systems running XFCE4.12+
