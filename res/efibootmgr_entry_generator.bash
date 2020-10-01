@@ -54,22 +54,61 @@ function swapfs {
             swapfs
             ;;
     esac
-    if [ "$HAS_SWAPPART" == true ]; then
-        blkid
-        echo "Enter the device name for the swap, followed by [ENTER]:"
-        read SWAP_FS_UUID
-        SWAP_FS_UUID=$(blkid -s PARTUUID $SWAP_FS_NAME | sed 's/^[^"]*"//; s/".*//')
-    fi
+    if [ "$HAS_SWAPPART" == true ]
+        then
+            blkid
+            echo "Enter the device name for the swap, followed by [ENTER]:"
+            read SWAP_FS_UUID
+            SWAP_FS_UUID=$(blkid -s PARTUUID $SWAP_FS_NAME | sed 's/^[^"]*"//; s/".*//')
+            SWAP_STRING="resume=PARTUUID=${SWAP_FS_UUID} "
+        else
+            SWAP_STRING=""
+    fi 
+}
+
+function microcode {
+    echo "Do you want to use microcode? [y/n]"
+    read HAS_SWAPPART
+    case $HAS_SWAPPART in
+
+        "y"|"Y")
+            HAS_MICROCODE=true
+            ;;
+
+        "n"|"N")
+            HAS_MICROCODE=false
+            ;;
+
+        *)
+            checkMicrocode
+            ;;
+    esac
+    if [ "$HAS_MICROCODE" == true ]
+        then
+            case $(cat /proc/cpuinfo | grep vendor_id | head -1 | sed "s/vendor_id\t\:\ //g") in
+
+                "AuthenticAMD")
+                    MICROCODE_STRING="initrd=\amd-ucode.img "
+                    ;;
+
+                "GenuineIntel")
+                    MICROCODE_STRING="initrd=\intel-ucode.img "
+
+                *)
+                    echo "Could not indentify CPU vendor. Exiting..."
+                    exit
+                    ;;
+            esac
+        else
+            MICROCODE_STRING=""
+    fi 
 }
 
 swapfs
+microcode
 
 echo "Enter the desired entry name on the EFI menu, followed by [ENTER]:"
 read ENTRY_NAME
 
-if [ "$HAS_SWAPPART" == true ]
-    then
-        efibootmgr --disk $(echo $ESP_PART | sed 's/[0-9]//g') --part $(echo $ESP_PART | sed 's/[a-z]//g; s/[\/]//g') --create --label "$ENTRY_NAME" --loader /vmlinuz-linux --unicode "root=PARTUUID=${ROOT_PART_UUID} resume=PARTUUID=${SWAP_FS_UUID} rw initrd=\initramfs-linux.img" --verbose
-    else
-        efibootmgr --disk $(echo $ESP_PART | sed 's/[0-9]//g') --part $(echo $ESP_PART | sed 's/[a-z]//g; s/[\/]//g') --create --label "$ENTRY_NAME" --loader /vmlinuz-linux --unicode "root=PARTUUID=${ROOT_PART_UUID} rw initrd=\initramfs-linux.img" --verbose
-fi
+
+efibootmgr --disk $(echo $ESP_PART | sed 's/[0-9]//g') --part $(echo $ESP_PART | sed 's/[a-z]//g; s/[\/]//g') --create --label "$ENTRY_NAME" --loader /vmlinuz-linux --unicode "root=PARTUUID=${ROOT_PART_UUID} ${SWAP_STRING}rw ${MICROCODE_STRING}initrd=\initramfs-linux.img" --verbose
