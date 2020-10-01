@@ -93,7 +93,8 @@ function microcode {
 
                 "GenuineIntel")
                     MICROCODE_STRING="initrd=\intel-ucode.img "
-
+                    ;;
+                    
                 *)
                     echo "Could not indentify CPU vendor. Exiting..."
                     exit
