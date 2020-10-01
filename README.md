@@ -7,6 +7,7 @@
   - [Refresh user groups without relogging-in](#refresh-user-groups-without-relogging-in)
 
 - [Scripts](#scripts)
+  - [efibootmgr Entry Generator](#efibootmgr-entry-generator)
   - [Alpine Linux Post-Install Script](#alpine-linux-post-install-script)
   - [Ubuntu Server 20.04 Debloat Script](#ubuntu-server-2004-debloat-script)
   - [Post-install script for Debian-based systems running XFCE4.12+](#post-install-script-for-debian-based-systems-running-xfce412)
@@ -43,6 +44,21 @@ Sidenote: Disable your adblocker if archive.org isnt working.
 
 ---
 # Scripts
+
+## efibootmgr Entry Generator
+Ever tried adding a EFIstub entry with efibootmgr by hand? This takes the pain out by automating the grepping and substitutions for you.
+
+GitHub:
+```bash
+# tbh just su into root first
+wget -O efibootmgr_entry_generator.bash https://raw.githubusercontent.com/JakeIsMeh/wiki-and-misc-resources/master/res/efibootmgr_entry_generator.bash && chmod +x efibootmgr_entry_generator.bash && bash ./efibootmgr_entry_generator.bash
+```
+
+GitHub:
+```bash
+# tbh just su into root first
+wget -O efibootmgr_entry_generator.bash https://gitlab.com/JakeIsMeh/wiki-and-misc-resources/raw/master/res/efibootmgr_entry_generator.bash && chmod +x efibootmgr_entry_generator.bash && bash ./efibootmgr_entry_generator.bash
+```
 
 ## Alpine Linux Post-Install Script
 
