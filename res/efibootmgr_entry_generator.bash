@@ -43,18 +43,18 @@ function swapfs {
     case $HAS_SWAPPART in
 
         "y"|"Y")
-            HAS_HOMEFS=true
+            HAS_SWAPFS="true"
             ;;
 
         "n"|"N")
-            HAS_HOMEFS=false
+            HAS_SWAPFS="false"
             ;;
 
         *)
             swapfs
             ;;
     esac
-    if [ "$HAS_SWAPPART" == true ]
+    if [ "$HAS_SWAPPART" == "true" ]
         then
             blkid
             echo "Enter the device name for the swap, followed by [ENTER]:"
@@ -68,22 +68,22 @@ function swapfs {
 
 function microcode {
     echo "Do you want to use microcode? [y/n]"
-    read HAS_SWAPPART
-    case $HAS_SWAPPART in
+    read WANT_MICROCODE
+    case $WANT_MICROCODE in
 
         "y"|"Y")
-            HAS_MICROCODE=true
+            WANT_MICROCODE="true"
             ;;
 
         "n"|"N")
-            HAS_MICROCODE=false
+            WANT_MICROCODE="false"
             ;;
 
         *)
-            checkMicrocode
+            microcode
             ;;
     esac
-    if [ "$HAS_MICROCODE" == true ]
+    if [ "$WANT_MICROCODE" == true ]
         then
             case $(cat /proc/cpuinfo | grep vendor_id | head -1 | sed "s/vendor_id\t\:\ //g") in
 
@@ -94,7 +94,7 @@ function microcode {
                 "GenuineIntel")
                     MICROCODE_STRING="initrd=\intel-ucode.img "
                     ;;
-                    
+
                 *)
                     echo "Could not indentify CPU vendor. Exiting..."
                     exit
