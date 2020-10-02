@@ -13,8 +13,6 @@
 # Featuring your favorite characters: Bad Regex,
 # No regards for POSIX sh, and Bad Var Names
 #
-# TODO: Add microcode support. Till then you can modify it for your own system.
-#
 # Created 2020-09-30 || Last Updated 2020-10-02
 #
 # by JakeIsMeh
