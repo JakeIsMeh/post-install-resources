@@ -15,7 +15,7 @@
 #
 # TODO: Add microcode support. Till then you can modify it for your own system.
 #
-# Created 2020-09-30 || Last Updated 2020-10-01
+# Created 2020-09-30 || Last Updated 2020-10-02
 #
 # by JakeIsMeh
 # gitlab.com/JakeIsMeh || github.com/JakeIsMeh
